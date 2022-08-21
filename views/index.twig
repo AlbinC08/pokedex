@@ -11,12 +11,14 @@
 	<body class="parallax">
 		<main>
 			<h1>Pokedex de
-				{{ user.name }}</h1>
-			<!-- Button to Open The Modal ADD POKEMON -->
-			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPokemon">Ajouter un Pokemon</button>
-			<a id="logout" href="/logout">
-				Se deconnecter
-			</a>
+				{{ user.firstname }}</h1>
+			<div id="button_add_logout">
+				<!-- Button to Open The Modal ADD POKEMON -->
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPokemon">Ajouter un Pokemon</button>
+				<a class="btn btn-primary" id="logout" href="/logout">
+					Se deconnecter
+				</a>
+			</div>
 			<section>
 
 				{% for pokemon in pokemons %}
@@ -25,15 +27,15 @@
 							{{ pokemon.name }}</h3>
 
 						<article class="inside-card-poke">
-							<h3>Level :
+							<h3>Level
 								{{ pokemon.level }}</h2>
 
-							<h3>Type :
+							<h3>
 								{{ pokemon.type }}</h2>
 							<img
 							src="/uploads/images/{{ pokemon.img }}" alt="">
 							<!-- Button to Open the update_Modal -->
-							<button id="upadate_modal" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-poketype="{{pokemon.type}}" data-bs-pokelevel="{{pokemon.level}}" data-bs-pokeid="{{pokemon.id}}" data-bs-pokename="{{pokemon.name}}" data-bs-target="#update_modal">Modifier</button>
+							<button id="upadate_modal" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-poketype="{{pokemon.type}}" data-bs-pokelevel="{{pokemon.level}}" data-bs-pokeid="{{pokemon.id}}" data-bs-pokename="{{pokemon.name}}" data-bs-pokeimage="{{pokemon.img}}" data-bs-target="#update_modal">Modifier</button>
 							<!-- Button to Open the del_Modal -->
 							<button id="button_del_card" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-pokeid="{{pokemon.id}}" data-bs-pokename="{{pokemon.name}}" data-bs-target="#modal">Supprimer</button>
 
@@ -119,10 +121,11 @@
 									id="addImage">
 									{# debut multer (***** image *****) #}
 									<label id="fileImage" for="image">Choisir une image</label>
-									<input placeholder="{{pokemon.img}}" type="file" name="image" id="inputImage">
+									<input
+									type="file" name="image" id="inputImage">
 									{# fin multer (***** image *****) #}
 
-									<button type="submit" class="btn btn-primary">envoyer</button>
+									<button id="button_update_poke" type="submit" class="btn btn-primary">envoyer</button>
 								</div>
 
 							</form>

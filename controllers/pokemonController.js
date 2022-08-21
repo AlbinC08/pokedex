@@ -18,6 +18,16 @@ export class pokemonController {
         return pokemon
     }
 
+    static async updatePokemons(req) {
+        console.log(req.file);
+        req.body.trainer = await req.session.user
+        //multer (***** image *****)
+        req.body.img = req.file.filename;
+        //multer (***** image *****)
+        let pokemon = pokemonModel(req.body)
+        await pokemon.updateOne()
+        return pokemon
+    }
 
 }
 

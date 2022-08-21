@@ -27,10 +27,12 @@ update_poke.addEventListener('show.bs.modal', function (event) {
   let pokeImage = button.getAttribute('data-bs-pokeImage')
   let modalform = document.querySelector('#form_update_poke')
   console.log(modalform);
+  console.log(pokeImage);
   document.querySelector('#inputName').value = pokename
   document.querySelector('#inputType').value = poketype
   document.querySelector('#inputLevel').value = pokelevel
-  document.querySelector('#inputImage').value = pokeImage
+  console.log(pokeImage);
+
   document.querySelector('#title_up_poke').innerText = `Modifier le Pokemon  ${pokename}`
   modalform.action = `/updatePokemon/${pokeId}`
 

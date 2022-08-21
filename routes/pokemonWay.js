@@ -70,8 +70,10 @@ pokemonRouter.get('/displayUpdatePokemon/:id', authGuard , async (req, res) => {
 
 /***************************Modifier un pokemon*******************************/
 
-pokemonRouter.post('/updatePokemon/:id', async (req, res) => {
+pokemonRouter.post('/updatePokemon/:id',upload.single('image'), async (req, res) => {
   try {
+    console.log(req.file);
+
     await pokemonModel.updateOne({ _id: req.params.id }, req.body)
     res.redirect('/index')        /*******affiche la page principal après la modification du pokemon en passant par la route index*******/
   } catch (error) {
