@@ -1,5 +1,6 @@
 import UserModel from "../models/users.js"
 import pokemonModel from "../models/pokemons.js"
+import fs from 'fs'
 
 export class pokemonController {
     static async getPokemons(req) {
@@ -19,14 +20,19 @@ export class pokemonController {
     }
 
     static async updatePokemons(req) {
-        console.log(req.file);
         req.body.trainer = await req.session.user
         //multer (***** image *****)
-        req.body.img = req.file.filename;
+        if (req.file) {
+            let pokemon = await pokemonModel.findOne({_id: req.params.id})
+            let imgName = pokemon.img
+            let imgDir = "assets/uploads/images/"
+            fs.unlinkSync(imgDir + imgName)
+            req.body.img = req.file.filename;
+        }
         //multer (***** image *****)
-        let pokemon = pokemonModel(req.body)
-        await pokemon.updateOne()
-        return pokemon
+
+        let updateStates = await pokemonModel.updateOne({_id: req.params.id},req.body)
+        return updateStates
     }
 
 }
